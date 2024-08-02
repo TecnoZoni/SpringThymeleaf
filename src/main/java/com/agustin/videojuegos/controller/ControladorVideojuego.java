@@ -26,5 +26,18 @@ public class ControladorVideojuego {
             return "error";
         }
     }
+    
+    @GetMapping("/inicio")
+    public String detalleVideojuego(Model model) {
+        try {
+            List<Videojuego> videojuegos = this.svcVideojuego.finAllByActivo();
+            model.addAttribute("videojuegos", videojuegos);
+
+            return "views/inicio";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+    }
 
 }
