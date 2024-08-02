@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VideojuegoRepository extends JpaRepository<Videojuego, Long> {
 
-    @Query(value = "SELECT * FROM videojuegos WHERE videojuegos.activo = true", nativeQuery = true)
+    @Query(value = "SELECT * FROM videojuego WHERE videojuego.activo = true", nativeQuery = true)
     List<Videojuego> findAllByActivo();
 
-    @Query(value = "SELECT * FROM videojuegos WHERE videojuegos.id= :id AND videojuegos.activo = true", nativeQuery = true)
+    @Query(value = "SELECT * FROM videojuego WHERE videojuego.id= :id AND videojuego.activo = true", nativeQuery = true)
     Optional<Videojuego> findByIdActivo(@Param("id") long id);
 
 }
