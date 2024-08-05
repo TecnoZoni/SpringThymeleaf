@@ -23,7 +23,7 @@ public class Videojuego {
     private String descripcion;
     private String imagen;
     private float precio;
-    private boolean stock;
+    private short stock;
     private Date fechaLanzamiento;
     private boolean activo = true;
 
