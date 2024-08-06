@@ -17,4 +17,7 @@ public interface VideojuegoRepository extends JpaRepository<Videojuego, Long> {
     @Query(value = "SELECT * FROM videojuego WHERE videojuego.id= :id AND videojuego.activo = true", nativeQuery = true)
     Optional<Videojuego> findByIdActivo(@Param("id") long id);
 
+    @Query(value = "SELECT * FROM videojuego WHERE videojuego.titulo LIKE %:titulo% AND videojuego.activo = true", nativeQuery = true)
+    List<Videojuego> findByTitle(@Param("titulo") String titulo);
+
 }
