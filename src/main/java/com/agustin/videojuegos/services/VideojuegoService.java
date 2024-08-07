@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VideojuegoService implements ServicioBase<Videojuego> {
-    
+
     @Autowired
     private VideojuegoRepository videoRepo;
-    
+
     @Override
     @Transactional
     public List<Videojuego> findAll() throws Exception {
@@ -24,7 +24,7 @@ public class VideojuegoService implements ServicioBase<Videojuego> {
             throw new Exception(e.getMessage());
         }
     }
-    
+
     @Override
     @Transactional
     public Videojuego findById(long id) throws Exception {
@@ -35,7 +35,7 @@ public class VideojuegoService implements ServicioBase<Videojuego> {
             throw new Exception(e.getMessage());
         }
     }
-    
+
     @Override
     @Transactional
     public Videojuego saveOne(Videojuego entity) throws Exception {
@@ -46,7 +46,7 @@ public class VideojuegoService implements ServicioBase<Videojuego> {
             throw new Exception(e.getMessage());
         }
     }
-    
+
     @Override
     @Transactional
     public Videojuego updateOne(Videojuego entity, long id) throws Exception {
@@ -59,7 +59,7 @@ public class VideojuegoService implements ServicioBase<Videojuego> {
             throw new Exception(e.getMessage());
         }
     }
-    
+
     @Override
     @Transactional
     public boolean deleteById(long id) throws Exception {
@@ -77,7 +77,7 @@ public class VideojuegoService implements ServicioBase<Videojuego> {
             throw new Exception(e.getMessage());
         }
     }
-    
+
     @Transactional
     public List<Videojuego> finAllByActivo() throws Exception {
         try {
@@ -87,7 +87,7 @@ public class VideojuegoService implements ServicioBase<Videojuego> {
             throw new Exception(e.getMessage());
         }
     }
-    
+
     @Transactional
     public Videojuego findByIdAndActivo(long id) throws Exception {
         try {
@@ -97,7 +97,7 @@ public class VideojuegoService implements ServicioBase<Videojuego> {
             throw new Exception(e.getMessage());
         }
     }
-    
+
     @Transactional
     public List<Videojuego> findByTitle(String titulo) throws Exception {
         try {
@@ -107,5 +107,5 @@ public class VideojuegoService implements ServicioBase<Videojuego> {
             throw new Exception(e.getMessage());
         }
     }
-    
+
 }

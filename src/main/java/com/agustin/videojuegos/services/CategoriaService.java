@@ -18,8 +18,8 @@ public class CategoriaService implements ServicioBase<Categoria> {
     @Transactional
     public List<Categoria> findAll() throws Exception {
         try {
-            List<Categoria> videojuegos = this.cateRepo.findAll();
-            return videojuegos;
+            List<Categoria> categoria = this.cateRepo.findAll();
+            return categoria;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

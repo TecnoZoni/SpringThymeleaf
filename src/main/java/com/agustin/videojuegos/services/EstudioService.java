@@ -18,8 +18,8 @@ public class EstudioService implements ServicioBase<Estudio> {
     @Transactional
     public List<Estudio> findAll() throws Exception {
         try {
-            List<Estudio> videojuegos = this.estuRepo.findAll();
-            return videojuegos;
+            List<Estudio> estudios = this.estuRepo.findAll();
+            return estudios;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

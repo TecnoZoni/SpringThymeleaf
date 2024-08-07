@@ -80,11 +80,10 @@ public class ControladorVideojuego {
         try {
             model.addAttribute("categorias", this.svcCategoria.findAll());
             model.addAttribute("estudios", this.svcEstudio.findAll());
-            if (id == 0) {
-                model.addAttribute("videojuego", new Videojuego());
-            } else {
-                model.addAttribute("videojuego", this.svcVideojuego.findById(id));
-            }
+
+            Videojuego videojuego = (id == 0) ? new Videojuego() : this.svcVideojuego.findById(id);
+            videojuego.setId(id);
+            model.addAttribute("videojuego", videojuego);
 
             return "views/formulario/videojuego";
         } catch (Exception e) {
@@ -94,7 +93,7 @@ public class ControladorVideojuego {
     }
 
     @PostMapping("/formulario/videojuego/{id}")
-    public String guardarVideojuego(@ModelAttribute Videojuego videojuego, Model model, @PathVariable Long id) {
+    public String guardarVideojuego(@ModelAttribute("videojuego") Videojuego videojuego, Model model, @PathVariable Long id) {
         try {
             if (id == 0) {
                 this.svcVideojuego.saveOne(videojuego);
@@ -104,13 +103,14 @@ public class ControladorVideojuego {
 
             return "redirect:/crud";
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             model.addAttribute("error", e.getMessage());
             return "error";
         }
     }
-    
-    /**
-     Resetear tabla de videojuegos
-     **/
 
+    /**
+     * Resetear tabla de videojuegos
+     *
+     */
 }
