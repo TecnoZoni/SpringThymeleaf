@@ -1,13 +1,17 @@
 package com.agustin.videojuegos.controller;
 
 import com.agustin.videojuegos.model.Videojuego;
+import com.agustin.videojuegos.services.CategoriaService;
+import com.agustin.videojuegos.services.EstudioService;
 import com.agustin.videojuegos.services.VideojuegoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -15,6 +19,10 @@ public class ControladorVideojuego {
 
     @Autowired
     private VideojuegoService svcVideojuego;
+    @Autowired
+    private CategoriaService svcCategoria;
+    @Autowired
+    private EstudioService svcEstudio;
 
     @GetMapping("/inicio")
     public String inicio(Model model) {
@@ -54,5 +62,55 @@ public class ControladorVideojuego {
             return "error";
         }
     }
+
+    @GetMapping("/crud")
+    public String crudVideojuego(Model model) {
+        try {
+            List<Videojuego> videojuegos = this.svcVideojuego.findAll();
+            model.addAttribute("videojuegos", videojuegos);
+            return "views/crud";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+    }
+
+    @GetMapping("/formulario/videojuego/{id}")
+    public String formularioVideojuego(Model model, @PathVariable Long id) {
+        try {
+            model.addAttribute("categorias", this.svcCategoria.findAll());
+            model.addAttribute("estudios", this.svcEstudio.findAll());
+            if (id == 0) {
+                model.addAttribute("videojuego", new Videojuego());
+            } else {
+                model.addAttribute("videojuego", this.svcVideojuego.findById(id));
+            }
+
+            return "views/formulario/videojuego";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+    }
+
+    @PostMapping("/formulario/videojuego/{id}")
+    public String guardarVideojuego(@ModelAttribute Videojuego videojuego, Model model, @PathVariable Long id) {
+        try {
+            if (id == 0) {
+                this.svcVideojuego.saveOne(videojuego);
+            } else {
+                this.svcVideojuego.updateOne(videojuego, id);
+            }
+
+            return "redirect:/crud";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+    }
+    
+    /**
+     Resetear tabla de videojuegos
+     **/
 
 }
