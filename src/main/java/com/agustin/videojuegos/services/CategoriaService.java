@@ -29,8 +29,8 @@ public class CategoriaService implements ServicioBase<Categoria> {
     @Transactional
     public Categoria findById(long id) throws Exception {
         try {
-            Optional<Categoria> videojuego = this.cateRepo.findById(id);
-            return videojuego.get();
+            Optional<Categoria> catoria = this.cateRepo.findById(id);
+            return catoria.get();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

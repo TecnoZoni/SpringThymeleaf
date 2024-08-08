@@ -29,8 +29,8 @@ public class EstudioService implements ServicioBase<Estudio> {
     @Transactional
     public Estudio findById(long id) throws Exception {
         try {
-            Optional<Estudio> videojuego = this.estuRepo.findById(id);
-            return videojuego.get();
+            Optional<Estudio> estudio = this.estuRepo.findById(id);
+            return estudio.get();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
