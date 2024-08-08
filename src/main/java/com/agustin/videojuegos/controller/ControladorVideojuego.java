@@ -109,8 +109,15 @@ public class ControladorVideojuego {
         }
     }
 
-    /**
-     * Resetear tabla de videojuegos
-     *
-     */
+    @GetMapping("/formulario/eliminar/{id}")
+    public String eliminarVideojuego(Model model, @PathVariable Long id) {
+        try {
+            model.addAttribute("videojuego", this.svcVideojuego.findById(id));
+            return "views/formulario/eliminar";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+    }
+
 }
