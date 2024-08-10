@@ -1,7 +1,7 @@
 <!-- Videogames Cards Fragment -->
 <div th:fragment="_card" class="col" th:each="videojuego : ${videojuegos}">
     <div class="card h-100 shadow-sm border-1">
-        <img th:src="${videojuego.imagen}" class="card-img-top rounded-top " alt="Imagen del videojuego">
+        <img th:src="@{'/imagenes/'} + ${videojuego.imagen}" class="card-img-top" alt="videojuego imagen">
         <div class="card-body">
             <h5 th:text="${videojuego.titulo}" class="card-title font-weight-bold">Título del videojuego</h5>
             <p th:text="${videojuego.descripcion}" class="card-text">Descripción del videojuego</p>

@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row mt-5" th:object="${videojuego}">
                 <div class="col-md-4">
-                    <img th:src="*{imagen}" alt="Imagen del videojuego" class="img-fluid rounded shadow h-75">
+                    <img th:src="@{'/imagenes/'} + ${videojuego.imagen}" class="card-img-top" alt="videojuego imagen">
                 </div>
                 <div class="col-md-8">
                     <div class="card shadow-lg border-0">
